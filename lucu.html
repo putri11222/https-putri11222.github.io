@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaf ya 😅</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #FFD3B6, #FFAAA5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #FF6B6B;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 15px;
+      background-color: #6BCB77;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background-color: #4CAF50;
+      transform: scale(1.1);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .emoji {
+      font-size: 3em;
+      display: block;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="emoji">😜</span>
+    <h1>Oops! Maaf ya 😅</h1>
+    <p>Aku cuma ingin bilang kalau aku lucu, tapi kadang bikin repot juga 😆</p>
+    <button onclick="showSurprise()">Klik buat lihat kejutan!</button>
+  </div>
+
+  <script>
+    function showSurprise() {
+      alert("🎉 Surprise! Aku janji akan lebih lucu tapi nggak ganggu lagi 😇");
+    }
+  </script>
+</body>
+</html>
