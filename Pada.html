@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Kenangan Kita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Import Font Estetik */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+        
+        :root {
+            --primary-pink: #ffb6c1;
+            --light-pink: #ffe4e9;
+            --dark-pink: #ff8fa3;
+            --gold: #FFD700;
+            --light-blue: #bbe2f5;
+            --cream: #fff5f7;
+            --text-dark: #5a3d5c;
+            --text-light: #8a6c8c;
+            --shadow-light: rgba(255, 182, 193, 0.2);
+            --shadow-medium: rgba(255, 143, 163, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-blue) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header Estetik */
+        .header-container {
+            text-align: center;
+            padding: 30px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-card {
+            background: var(--cream);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            max-width: 500px;
+            margin: 0 auto 30px;
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .title {
+            font-family: 'Pacifico', cursive;
+            color: var(--text-dark);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .smiley-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .smiley {
+            width: 140px;
+            height: 140px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: relative;
+            animation: bounce 2s infinite alternate;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            cursor: pointer;
+        }
+        
+        .smiley:hover {
+            transform: scale(1.05);
+        }
+        
+        .eyes {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 40px;
+        }
+        
+        .eye {
+            width: 30px;
+            height: 40px;
+            background: var(--text-dark);
+            border-radius: 50%;
+            position: relative;
+            animation: blink 4s infinite;
+        }
+        
+        .mouth {
+            width: 70px;
+            height: 30px;
+            background: var(--dark-pink);
+            border-radius: 0 0 40px 40px;
+            margin: 20px auto 0;
+            transition: var(--transition);
+        }
+        
+        .intro-message {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .signature {
+            font-style: italic;
+            color: var(--dark-pink);
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px 40px;
+        }
+        
+        /* Comment Form Container */
+        .comment-form-container {
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--cream);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px var(--shadow-light);
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .comment-form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .comment-form-header h3 {
+            font-family: 'Pacifico', cursive;
+            color: var(--text-dark);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        
+        .comment-form-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+        
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid var(--light-pink);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-family: 'Quicksand', sans-serif;
+            background-color: white;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--dark-pink);
+            box-shadow: 0 0 0 3px var(--shadow-light);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Button Styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        .btn-special {
+            background: linear-gradient(to right, var(--gold), #ffec8b);
+            color: var(--text-dark);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .btn-special:hover {
+            background: linear-gradient(to right, #ffd700, #ffdb58);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Comments Display */
+        .comments-display {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .comments-display-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed var(--light-pink);
+        }
+        
+        .comments-display-header h4 {
+            color: var(--text-dark);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .comment-counter {
+            background: var(--primary-pink);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .comment-item {
+            background: var(--light-pink);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--dark-pink);
+            transition: var(--transition);
+        }
+        
+        .comment-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dark-pink), var(--primary-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .comment-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        
+        .comment-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+        
+        .comment-text {
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-size: 0.9rem;
+            padding-left: 40px;
+        }
+        
+        .comment-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255, 143, 163, 0.3);
+        }
+        
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+        
+        .delete-btn:hover {
+            color: var(--dark-pink);
+        }
+        
+        /* Clear All Button */
+        .clear-all-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: linear-gradient(to right, #f87171, #ef4444);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .clear-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary-pink);
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+        }
+        
+        /* Photo Carousel Card */
+        .photo-card {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            overflow: hidden;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.5s ease;
+            padding-bottom: 20px;
+            opacity: 0;
+            z-index: 1000;
+            display: none;
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .photo-card.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            display: block;
+        }
+        
+        .photo-carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .photo-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .photo-frame {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .photo-frame img {
+            max-width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        /* Hidden Message Frame */
+        .hidden-message-frame {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--light-pink), var(--cream));
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .hidden-message-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow-medium);
+            max-width: 90%;
+            width: 100%;
+            border: 3px solid var(--gold);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+        
+        .hidden-message-title {
+            font-family: 'Pacifico', cursive;
+            color: var(--dark-pink);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .hidden-message-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .hidden-message-text p {
+            margin-bottom: 12px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .hidden-message-signature {
+            font-style: italic;
+            color: var(--dark-pink);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--primary-pink);
+            font-family: 'Pacifico', cursive;
+        }
+        
+        /* Expanded Message Styling */
+        .expanded-message {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+        
+        .expanded-message.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .read-more-btn {
+            background: linear-gradient(to right, var(--dark-pink), var(--primary-pink));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+        
+        .read-more-btn i {
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .read-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .carousel-nav button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: var(--dark-pink);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            transition: var(--transition);
+            border: 2px solid var(--primary-pink);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-nav button:hover {
+            background: var(--dark-pink);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-nav button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .carousel-nav button:disabled:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-pink);
+            transform: none;
+        }
+        
+        .name-tag {
+            background: linear-gradient(to right, var(--dark-pink), var(--primary-pink));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        .photo-indicators {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--light-pink);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--primary-pink);
+        }
+        
+        .indicator.active {
+            background: var(--dark-pink);
+            transform: scale(1.2);
+        }
+        
+        .indicator.hidden-message {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+        
+        .indicator.hidden-message.active {
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--dark-pink);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 11;
+            transition: var(--transition);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-btn:hover {
+            background: var(--text-dark);
+            transform: scale(1.1);
+        }
+        
+        /* Hearts Animation */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 18px;
+            color: var(--dark-pink);
+            animation: float-up 4s linear infinite;
+            opacity: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px dashed var(--primary-pink);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Animations */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        @keyframes blink {
+            0%, 45%, 55%, 100% { height: 40px; }
+            50% { height: 8px; }
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-pink);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-pink);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-pink);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .photo-carousel {
+                height: 350px;
+            }
+            
+            .hidden-message-content {
+                padding: 20px;
+            }
+            
+            .hidden-message-title {
+                font-size: 1.5rem;
+            }
+            
+            .hidden-message-text {
+                font-size: 1rem;
+            }
+            
+            .comment-form-header h3 {
+                font-size: 1.4rem;
+            }
+            
+            .comment-text {
+                padding-left: 0;
+                margin-top: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-card {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 1.6rem;
+            }
+            
+            .photo-card {
+                width: 95%;
+            }
+            
+            .photo-carousel {
+                height: 300px;
+            }
+            
+            .hidden-message-content {
+                padding: 15px;
+            }
+            
+            .hidden-message-title {
+                font-size: 1.3rem;
+            }
+            
+            .hidden-message-text {
+                font-size: 0.9rem;
+            }
+            
+            .comment-form-container {
+                padding: 15px;
+            }
+            
+            textarea {
+                min-height: 100px;
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Hearts -->
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Header dengan Smiley Estetik -->
+    <div class="header-container">
+        <div class="header-card">
+            <h1 class="title"> Memories together <span class="doll-emoji">🧸</span></h1>
+            
+            <div class="smiley-container">
+                <div class="smiley" id="smiley">
+                    <div class="eyes">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            
+            <p class="intro-message">Klik wajah emojinya! <span class="doll-emoji">🎀</span></p>
+            <p class="intro-message">Ini momen berharga bersama teman-teman dan kamu Abel. Setiap kenangan bersama adalah cerita yang tak terlupakan.</p>
+            
+            <div class="signature">~ Dari Puput Cantikk <span class="doll-emoji">💌</span> ~</div>
+        </div>
+    </div>
+    
+    <!-- Form Komentar untuk Abel -->
+    <div class="main-container">
+        <div class="comment-form-container">
+            <div class="comment-form-header">
+                <h3><i class="fas fa-heart" style="color: var(--dark-pink); margin-right: 10px;"></i> Tulis Pesan untuk Abel <i class="fas fa-heart" style="color: var(--dark-pink); margin-left: 10px;"></i></h3>
+                <p>Tulis pesan di bawah ini. Kamu bisa kirim banyak pesan!</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="commentName"><i class="fas fa-user"></i> Nama Kamu</label>
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="commentName" placeholder="Masukkan nama kamu">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="commentText"><i class="fas fa-comment-dots"></i> Pesan Kamu</label>
+                <div class="input-icon">
+                    <i class="fas fa-comment-dots"></i>
+                    <textarea id="commentText" placeholder="Tulis pesanmu untuk Abel di sini..."></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group" style="margin-top: 10px;">
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-special" onclick="saveCommentForAbel()" style="flex: 2;">
+                        <i class="fas fa-heart"></i> Kirim Pesan
+                    </button>
+                    <button class="btn" onclick="clearCommentForm()" style="flex: 1; background: var(--light-pink); color: var(--text-dark);">
+                        <i class="fas fa-eraser"></i> Bersihkan
+                    </button>
+                </div>
+            </div>
+            
+            <div class="comments-display" id="commentsDisplay">
+                <div class="comments-display-header">
+                    <h4><i class="fas fa-comments" style="color: var(--dark-pink); margin-right: 10px;"></i> Pesan untuk Abel</h4>
+                    <div class="comment-counter" id="commentCount">0 Pesan</div>
+                </div>
+                <div id="abelComments">
+                    <!-- Pesan untuk Abel akan ditampilkan di sini -->
+                    <div class="empty-state" style="padding: 20px;">
+                        <i class="fas fa-comment" style="color: var(--primary-pink);"></i>
+                        <p>Belum ada pesan untuk Abel. Jadilah yang pertama menulis!</p>
+                    </div>
+                </div>
+                
+                <!-- Tombol Hapus Semua Komentar -->
+                <button class="clear-all-btn" onclick="clearAllComments()" id="clearAllCommentsBtn" style="display: none;">
+                    <i class="fas fa-trash-alt"></i> Hapus Semua Pesan
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Photo Carousel Card (Tersembunyi Awalnya) -->
+    <div class="photo-card" id="photoCard">
+        <button class="close-btn" id="closeBtn">×</button>
+        
+        <div class="photo-carousel">
+            <div class="photo-container" id="photoContainer">
+                <!-- Gambar contoh akan dimasukkan via JavaScript -->
+            </div>
+            
+            <div class="carousel-nav">
+                <button id="prevBtn">❮</button>
+                <button id="nextBtn">❯</button>
+            </div>
+            
+            <div class="photo-indicators" id="indicators"></div>
+        </div>
+        
+        <div class="name-tag" id="carouselTitle">Kenangan Indah</div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 Album Kenangan Kita | Dibuat dengan <i class="fas fa-heart" style="color: var(--dark-pink);"></i> untuk mengabadikan momen berharga</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Semua pesan disimpan di perangkat Anda secara lokal</p>
+    </footer>
+
+    <script>
+        // Elemen DOM
+        const smiley = document.getElementById('smiley');
+        const photoCard = document.getElementById('photoCard');
+        const closeBtn = document.getElementById('closeBtn');
+        const heartsContainer = document.getElementById('hearts');
+        const carouselTitle = document.getElementById('carouselTitle');
+        
+        // Foto-foto contoh
+        const sampleImages = [
+            {
+                src: "foto/2.jpg",
+                title: "Kenangan Bahagia"
+            },
+            {
+                src: "foto/1.jpg",
+                title: "Momen Bersama"
+            },
+            {
+                src: "foto/3.jpg",
+                title: "Momen Bersama"
+            },
+            {
+                src: "foto/4.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/5.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/6.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/7.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/8.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/9.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/10.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/11.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/12.JPG",
+                title: "Momen Bersama"
+            },
+            {
+                src: "foto/13.jpg",
+                title: "Kebersamaan"
+            },
+            {
+                src: "foto/14.jpg",
+                title: "Kebersamaan"
+            }
+        ];
+        
+        // Inisialisasi carousel dengan gambar contoh
+        function initCarousel() {
+            const photoContainer = document.getElementById('photoContainer');
+            const indicatorsContainer = document.getElementById('indicators');
+            
+            // Tambahkan foto-foto contoh
+            sampleImages.forEach((item, index) => {
+                // Tambah frame foto
+                const frame = document.createElement('div');
+                frame.className = 'photo-frame';
+                frame.innerHTML = `
+                    <img src="${item.src}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
+                    <div style="color: var(--text-light); font-size: 0.9rem; font-style: italic;">${item.title}</div>
+                `;
+                photoContainer.appendChild(frame);
+                
+                // Tambah indicator
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // Tambahkan frame untuk pesan tersembunyi
+            loadAbelCommentSlide();
+            
+            // Inisialisasi carousel controls
+            initCarouselControls();
+        }
+        
+        // Fungsi untuk memuat komentar Abel sebagai slide dengan fitur expandable
+        function loadAbelCommentSlide() {
+            const photoContainer = document.getElementById('photoContainer');
+            const indicatorsContainer = document.getElementById('indicators');
+            
+            // Tambahkan frame untuk pesan tersembunyi dengan fitur expandable
+            const hiddenFrame = document.createElement('div');
+            hiddenFrame.className = 'hidden-message-frame';
+            hiddenFrame.innerHTML = `
+                <div class="hidden-message-content">
+                    <div class="hidden-message-title">
+                        <i class="fas fa-heart"></i> Pesan untuk Abel <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="hidden-message-text">
+                        <p><strong>Baca Sampai Habis 😍</strong></p>
+                        
+                        <p>Terima kasih sudah mau menjadi temanku, sudah perhatian, dan peduli sama aku. Kamu banyak sekali memberikan aku pelajaran berharga selama 3 tahun lebih kita bersama.</p>
+                        
+                        <div class="expanded-message" id="expandedMessage">
+                            <p>Aku banyak belajar hal-hal baru darimu dari hal-hal yang tidak pernah aku cari tahu. Aku cari tahu cara aku bertahan. Aku belajar cara kamu memperlakukan orang dengan baik, aku juga belajar hal itu.</p>
+                            
+                            <p>Aku sangat bersyukur bisa bertemu denganmu dan teman-teman yang lain. setelah bersama kalian aku sadar dan aku berubah aku tidak pernah sesenang ini bersama kalian tertawa bareng, mkn bareng, nonton bareng,apalagi denganmu abel mungkin kamu pernah merasakan momen itu tapi ini pertama kali aku merasa bahagia sekali seumur hidupku apalagi berteman denganmu hanya saja waktu terlalu singkat, dan juga kita masing2 sudah berubah pdahal masih ketemu mungkin masa2 kita sudah habis di situ dan kamu juga sudah mempunyai mereka di sisimu. (aku juga ada curhat2 di sini klau kau mau baca bacalh tapi klau ngk sangup ngk pph karena aku cuman pengen jujur aj semua itu ke kau tapi agak sdikit lebay nnti, jadi aq terus terang di sini aja masalh yg membuatku sakit hati)</p>
+                            
+                            <p>Semoga kamu sukses dan sehat selalu, Abel! 🫶🫶</p>
+                            
+                            <p>Sampai ketemu di perjalanan selanjutnya...</p>
+                            <p>Sampai jumpa lagi, dalam bentuk yang lebih baik.</p>
+                            <p>Sampai bertemu lagi, dengan senyuman yang lebih lebar.</p>
+                            
+                            <p style="text-align: center; margin-top: 15px; font-weight: bold; color: var(--dark-pink);">
+                                Keep shining, Abel! ✨
+                            </p>
+                        </div>
+                        
+                        <button class="read-more-btn" id="readMoreBtn">
+                            <i class="fas fa-chevron-down"></i> Baca Selengkapnya
+                        </button>
+                    </div>
+                    <div class="hidden-message-signature">
+                        ~ Dari Seorang teman yang tulus berteman denganmu ~
+                    </div>
+                </div>
+            `;
+            photoContainer.appendChild(hiddenFrame);
+            
+            // Tambah indicator khusus untuk pesan tersembunyi
+            const hiddenIndicator = document.createElement('div');
+            hiddenIndicator.className = 'indicator hidden-message';
+            hiddenIndicator.addEventListener('click', () => goToSlide(sampleImages.length));
+            indicatorsContainer.appendChild(hiddenIndicator);
+            
+            // Setup event listener untuk tombol Baca Selengkapnya
+            setTimeout(() => {
+                const readMoreBtn = document.getElementById('readMoreBtn');
+                const expandedMessage = document.getElementById('expandedMessage');
+                
+                if (readMoreBtn && expandedMessage) {
+                    readMoreBtn.addEventListener('click', function() {
+                        expandedMessage.classList.toggle('active');
+                        
+                        if (expandedMessage.classList.contains('active')) {
+                            this.innerHTML = '<i class="fas fa-chevron-up"></i> Baca Lebih Sedikit';
+                            this.classList.add('expanded');
+                        } else {
+                            this.innerHTML = '<i class="fas fa-chevron-down"></i> Baca Selengkapnya';
+                            this.classList.remove('expanded');
+                        }
+                    });
+                }
+            }, 100);
+            
+            // Tampilkan komentar di bagian komentar
+            displayAbelComments();
+        }
+        
+        // Fungsi untuk menyimpan komentar untuk Abel
+        function saveCommentForAbel() {
+            const commentName = document.getElementById('commentName').value.trim();
+            const commentText = document.getElementById('commentText').value.trim();
+            
+            if (!commentName || !commentText) {
+                alert('Harap isi nama dan pesan untuk Abel! 😊');
+                return;
+            }
+            
+            const comment = {
+                id: Date.now(),
+                name: commentName,
+                message: commentText,
+                date: new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+            
+            // Ambil komentar yang sudah ada
+            let abelComments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            
+            // Tambah komentar baru di awal array
+            abelComments.unshift(comment);
+            
+            // Simpan ke localStorage (maksimal 50 komentar)
+            if (abelComments.length > 50) {
+                abelComments = abelComments.slice(0, 50);
+            }
+            
+            localStorage.setItem('abelComments', JSON.stringify(abelComments));
+            
+            // Reset form
+            document.getElementById('commentText').value = '';
+            
+            // Update tampilan
+            displayAbelComments();
+            updateCommentStats();
+            
+            // Animasi feedback
+            const saveBtn = document.querySelector('.btn-special');
+            const originalHTML = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> Terkirim!';
+            saveBtn.style.background = 'linear-gradient(to right, #10b981, #34d399)';
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = originalHTML;
+                saveBtn.style.background = 'linear-gradient(to right, var(--gold), #ffec8b)';
+            }, 2000);
+        }
+        
+        // Fungsi untuk menghapus komentar
+        function deleteComment(commentId) {
+            if (!confirm('Yakin ingin menghapus pesan ini?')) {
+                return;
+            }
+            
+            let abelComments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            abelComments = abelComments.filter(comment => comment.id !== commentId);
+            
+            localStorage.setItem('abelComments', JSON.stringify(abelComments));
+            
+            // Update tampilan
+            displayAbelComments();
+            updateCommentStats();
+        }
+        
+        // Fungsi untuk menghapus semua komentar
+        function clearAllComments() {
+            const abelComments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            
+            if (abelComments.length === 0) {
+                alert('Tidak ada pesan untuk dihapus!');
+                return;
+            }
+            
+            if (!confirm(`Yakin ingin menghapus semua ${abelComments.length} pesan untuk Abel?`)) {
+                return;
+            }
+            
+            localStorage.removeItem('abelComments');
+            
+            // Update tampilan
+            displayAbelComments();
+            updateCommentStats();
+            
+            alert('Semua pesan untuk Abel telah dihapus!');
+        }
+        
+        // Fungsi untuk membersihkan form komentar
+        function clearCommentForm() {
+            document.getElementById('commentText').value = '';
+        }
+        
+        // Fungsi untuk menampilkan komentar Abel
+        function displayAbelComments() {
+            const abelCommentsDiv = document.getElementById('abelComments');
+            const clearAllCommentsBtn = document.getElementById('clearAllCommentsBtn');
+            const comments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            
+            // Tampilkan/sembunyikan tombol hapus semua
+            clearAllCommentsBtn.style.display = comments.length > 0 ? 'flex' : 'none';
+            
+            if (comments.length === 0) {
+                abelCommentsDiv.innerHTML = `
+                    <div class="empty-state" style="padding: 20px;">
+                        <i class="fas fa-comment" style="color: var(--primary-pink);"></i>
+                        <p>Belum ada pesan untuk Abel. Jadilah yang pertama menulis!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            abelCommentsDiv.innerHTML = '';
+            
+            comments.forEach(comment => {
+                const firstLetter = comment.name.charAt(0).toUpperCase();
+                
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment-item';
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-avatar">${firstLetter}</div>
+                        <div class="comment-info">
+                            <h4>${comment.name}</h4>
+                            <div class="comment-date">${comment.date}</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">${comment.message.replace(/\n/g, '<br>')}</div>
+                    <div class="comment-actions">
+                        <button class="delete-btn" onclick="deleteComment(${comment.id})">
+                            <i class="fas fa-trash-alt"></i> Hapus
+                        </button>
+                    </div>
+                `;
+                abelCommentsDiv.appendChild(commentDiv);
+            });
+        }
+        
+        // Fungsi untuk memperbarui statistik komentar
+        function updateCommentStats() {
+            const comments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            document.getElementById('commentCount').textContent = `${comments.length} Pesan`;
+        }
+        
+        // Fungsi untuk menampilkan kartu foto
+        function showPhotoCard() {
+            photoCard.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset ke slide pertama
+            currentIndex = 0;
+            updateCarousel();
+        }
+        
+        // Fungsi untuk menyembunyikan kartu foto
+        function hidePhotoCard() {
+            photoCard.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Event listeners
+        smiley.addEventListener('click', showPhotoCard);
+        closeBtn.addEventListener('click', hidePhotoCard);
+        
+        // Carousel functionality
+        let currentIndex = 0;
+        
+        function initCarouselControls() {
+            const photoContainer = document.getElementById('photoContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.indicator');
+            const comments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            const totalSlides = sampleImages.length + 1; // Semua foto + 1 slide pesan
+            
+            function updateCarousel() {
+                photoContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update tombol navigasi
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === totalSlides - 1;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                
+                // Update judul carousel
+                if (currentIndex < sampleImages.length) {
+                    carouselTitle.textContent = sampleImages[currentIndex].title;
+                    carouselTitle.style.display = 'inline-block';
+                } else {
+                    carouselTitle.textContent = `Pesan Khusus untuk Abel`;
+                    carouselTitle.style.display = 'inline-block';
+                }
+            }
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+            
+            function nextSlide() {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            }
+            
+            function prevSlide() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            }
+            
+            // Event listeners untuk tombol navigasi
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Event listener untuk keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (photoCard.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    } else if (e.key === 'Escape') {
+                        hidePhotoCard();
+                    }
+                }
+            });
+            
+            updateCarousel();
+        }
+        
+        // Hati-hati kecil (hearts animation)
+        const dollEmojis = ['🧸', '🪆', '🧵', '🎀', '🪅', '🎎', '🪔', '🎁', '💖', '💕'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = dollEmojis[Math.floor(Math.random() * dollEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Buat hati-hati setiap 300ms
+        setInterval(createHeart, 300);
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousel();
+            displayAbelComments();
+            updateCommentStats();
+            
+            // Tambah contoh komentar pertama
+            const abelComments = JSON.parse(localStorage.getItem('abelComments')) || [];
+            if (abelComments.length === 0) {
+                const exampleComment = {
+                    id: Date.now() - 86400000,
+                    name: "Putri",
+                    message: "Untuk Abel yang spesial,\n\nTerima kasih atas kenangan 3 tahun bersama. Kamu adalah teman yang luar biasa yang selalu memberikan pelajaran berharga dalam hidupku. Aku sangat bersyukur bisa mengenalmu dan teman-teman lainnya.\n\nSemoga di perjalanan selanjutnya, kita semua bisa terus tumbuh dan sukses. Keep shining, Abel! ✨",
+                    date: new Date().toLocaleDateString('id-ID', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+                
+                abelComments.push(exampleComment);
+                localStorage.setItem('abelComments', JSON.stringify(abelComments));
+                displayAbelComments();
+                updateCommentStats();
+            }
+            
+            // Tambah efek pada smiley
+            const mouth = document.querySelector('.mouth');
+            smiley.addEventListener('mouseenter', () => {
+                mouth.style.height = '15px';
+                mouth.style.borderRadius = '50%';
+            });
+            
+            smiley.addEventListener('mouseleave', () => {
+                mouth.style.height = '30px';
+                mouth.style.borderRadius = '0 0 40px 40px';
+            });
+        });
+    </script>
+</body>
+</html>
